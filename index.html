@@ -1,318 +1,328 @@
-import React from 'react';
-import { 
-  Activity, 
-  Microscope, 
-  Zap, 
-  ShieldCheck, 
-  Cpu, 
-  TrendingUp,
-  Info,
-  ChevronRight,
-  Droplets,
-  Battery
-} from 'lucide-react';
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>차세대 CGM 기술 백서</title>
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons (CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- 폰트 설정 -->
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+        body { font-family: 'Pretendard', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen">
 
-const App = () => {
-  return (
-    <div className="min-h-screen bg-slate-50 font-sans text-slate-800">
-      {/* Header / Hero Section */}
-      <header className="bg-gradient-to-br from-blue-900 via-blue-800 to-cyan-700 text-white py-20 px-4 sm:px-6 lg:px-8 shadow-xl">
-        <div className="max-w-5xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/30 border border-blue-400/30 text-blue-100 text-sm font-medium mb-6 backdrop-blur-sm">
-            <Activity size={16} />
-            차세대 의료기기 기술 백서
-          </div>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-tight mb-6">
-            나노다공성 백금을 이용한 초소형<br className="hidden md:block" /> 무혈청·무효소식 연속혈당측정기
-          </h1>
-          <p className="text-lg sm:text-xl text-blue-100 max-w-3xl leading-relaxed opacity-90">
-            기술적 설계 및 장기 안정성 확보 전략
-          </p>
+    <!-- Header / Hero Section -->
+    <header class="bg-gradient-to-br from-blue-900 via-blue-800 to-cyan-700 text-white py-20 px-4 sm:px-6 lg:px-8 shadow-xl">
+        <div class="max-w-5xl mx-auto">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/30 border border-blue-400/30 text-blue-100 text-sm font-medium mb-6 backdrop-blur-sm">
+                <i class="fa-solid fa-wave-square"></i>
+                차세대 의료기기 기술 백서
+            </div>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-tight mb-6">
+                나노다공성 백금을 이용한 초소형<br class="hidden md:block"> 무혈청·무효소식 연속혈당측정기
+            </h1>
+            <p class="text-lg sm:text-xl text-blue-100 max-w-3xl leading-relaxed opacity-90">
+                기술적 설계 및 장기 안정성 확보 전략
+            </p>
         </div>
-      </header>
+    </header>
 
-      {/* Abstract Section */}
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-10">
-        <div className="bg-white rounded-2xl shadow-lg p-8 md:p-10 border border-slate-100">
-          <h2 className="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
-            <Info className="text-blue-600" />
-            보고서 요약 (Executive Summary)
-          </h2>
-          <p className="text-slate-600 leading-relaxed text-lg">
-            본 보고서는 <strong>나노다공성 백금(np-Pt)</strong> 기반의 무효소식 전극 촉매 기술을 활용하여, 인체 삽입 후 1년 이상의 구동 수명을 유지하면서도 <strong>2.0 mm 이하의 직경</strong>을 갖는 차세대 임플란터블 연속혈당측정기(CGM)의 개발 방향을 제시합니다. 전기화학적 이중층 캐패시턴스의 물리화학적 제어와 양쪽성 이온 고분자 기반의 외부막 설계를 통한 한계 극복 방안을 심도 있게 분석합니다.
-          </p>
+    <!-- Abstract Section -->
+    <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-10">
+        <div class="bg-white rounded-2xl shadow-lg p-8 md:p-10 border border-slate-100">
+            <h2 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+                <i class="fa-solid fa-circle-info text-blue-600"></i>
+                보고서 요약 (Executive Summary)
+            </h2>
+            <p class="text-slate-600 leading-relaxed text-lg">
+                본 보고서는 <strong>나노다공성 백금(np-Pt)</strong> 기반의 무효소식 전극 촉매 기술을 활용하여, 인체 삽입 후 1년 이상의 구동 수명을 유지하면서도 <strong>2.0 mm 이하의 직경</strong>을 갖는 차세대 임플란터블 연속혈당측정기(CGM)의 개발 방향을 제시합니다. 전기화학적 이중층 캐패시턴스의 물리화학적 제어와 양쪽성 이온 고분자 기반의 외부막 설계를 통한 한계 극복 방안을 심도 있게 분석합니다.
+            </p>
         </div>
-      </section>
+    </section>
 
-      {/* Main Content */}
-      <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
+    <!-- Main Content -->
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
         
-        {/* Section 1 */}
+        <!-- Section 1 -->
         <section>
-          <div className="flex items-center gap-3 mb-8">
-            <div className="p-3 bg-blue-100 text-blue-700 rounded-xl">
-              <TrendingUp size={24} />
+            <div class="flex items-center gap-3 mb-8">
+                <div class="p-3 bg-blue-100 text-blue-700 rounded-xl">
+                    <i class="fa-solid fa-arrow-trend-up text-xl"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-900">상용 기술 분석 및 차세대 소형화 목표</h2>
             </div>
-            <h2 className="text-2xl font-bold text-slate-900">상용 기술 분석 및 차세대 소형화 목표</h2>
-          </div>
-          <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
-            <div className="p-6 md:p-8">
-              <p className="text-slate-600 mb-6 leading-relaxed">
-                현재 유일하게 1년 수명을 보장하는 상용 임플란터블 CGM인 <strong>Eversense 365</strong>는 광학식(형광) 센서로 약 3.5mm의 직경을 가집니다. 이는 삽입 시 소규모 절개가 필요해 환자의 거부감을 유발할 수 있습니다. 이를 <strong>2.0mm 이하로 축소</strong>하기 위해 구조적 단순화가 용이한 <strong>무효소식 전기화학 계측 방식</strong>이 필수적입니다.
-              </p>
-              
-              <div className="overflow-x-auto">
-                <table className="w-full text-left border-collapse">
-                  <thead>
-                    <tr className="bg-slate-50 border-y border-slate-200">
-                      <th className="py-4 px-4 font-semibold text-slate-900">특성</th>
-                      <th className="py-4 px-4 font-semibold text-slate-900">Eversense 365</th>
-                      <th className="py-4 px-4 font-semibold text-blue-600 bg-blue-50/50">개발 목표 (np-Pt 기반)</th>
-                      <th className="py-4 px-4 font-semibold text-slate-900">비고</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-slate-100">
-                    <tr className="hover:bg-slate-50 transition-colors">
-                      <td className="py-3 px-4 font-medium">계측 원리</td>
-                      <td className="py-3 px-4 text-slate-600">형광 (Fluorescence)</td>
-                      <td className="py-3 px-4 font-semibold text-blue-700 bg-blue-50/30">무효소식 전기화학 (np-Pt)</td>
-                      <td className="py-3 px-4 text-slate-500 text-sm">구조 단순화 가능</td>
-                    </tr>
-                    <tr className="hover:bg-slate-50 transition-colors">
-                      <td className="py-3 px-4 font-medium">센서 직경</td>
-                      <td className="py-3 px-4 text-slate-600">3.5 mm</td>
-                      <td className="py-3 px-4 font-semibold text-blue-700 bg-blue-50/30">≤ 2.0 mm</td>
-                      <td className="py-3 px-4 text-slate-500 text-sm">삽입 거부감 감소</td>
-                    </tr>
-                    <tr className="hover:bg-slate-50 transition-colors">
-                      <td className="py-3 px-4 font-medium">센서 길이</td>
-                      <td className="py-3 px-4 text-slate-600">18.3 mm</td>
-                      <td className="py-3 px-4 font-semibold text-blue-700 bg-blue-50/30">≤ 15.0 mm</td>
-                      <td className="py-3 px-4 text-slate-500 text-sm">체내 적응성 향상</td>
-                    </tr>
-                    <tr className="hover:bg-slate-50 transition-colors">
-                      <td className="py-3 px-4 font-medium">배터리 유무</td>
-                      <td className="py-3 px-4 text-slate-600">없음 (무선 전력 수확)</td>
-                      <td className="py-3 px-4 font-semibold text-blue-700 bg-blue-50/30">없음 (NFC 기반)</td>
-                      <td className="py-3 px-4 text-slate-500 text-sm">소형화 필수 조건</td>
-                    </tr>
-                    <tr className="hover:bg-slate-50 transition-colors">
-                      <td className="py-3 px-4 font-medium">외부막 기술</td>
-                      <td className="py-3 px-4 text-slate-600">실리콘 기반 하이드로젤</td>
-                      <td className="py-3 px-4 font-semibold text-blue-700 bg-blue-50/30">양쪽성 이온 고분자 막</td>
-                      <td className="py-3 px-4 text-slate-500 text-sm">바이오파울링 억제</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="p-6 md:p-8">
+                    <p class="text-slate-600 mb-6 leading-relaxed">
+                        현재 유일하게 1년 수명을 보장하는 상용 임플란터블 CGM인 <strong>Eversense 365</strong>는 광학식(형광) 센서로 약 3.5mm의 직경을 가집니다. 이는 삽입 시 소규모 절개가 필요해 환자의 거부감을 유발할 수 있습니다. 이를 <strong>2.0mm 이하로 축소</strong>하기 위해 구조적 단순화가 용이한 <strong>무효소식 전기화학 계측 방식</strong>이 필수적입니다.
+                    </p>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-slate-50 border-y border-slate-200">
+                                    <th class="py-4 px-4 font-semibold text-slate-900">특성</th>
+                                    <th class="py-4 px-4 font-semibold text-slate-900">Eversense 365</th>
+                                    <th class="py-4 px-4 font-semibold text-blue-600 bg-blue-50/50">개발 목표 (np-Pt 기반)</th>
+                                    <th class="py-4 px-4 font-semibold text-slate-900">비고</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100">
+                                <tr class="hover:bg-slate-50 transition-colors">
+                                    <td class="py-3 px-4 font-medium">계측 원리</td>
+                                    <td class="py-3 px-4 text-slate-600">형광 (Fluorescence)</td>
+                                    <td class="py-3 px-4 font-semibold text-blue-700 bg-blue-50/30">무효소식 전기화학 (np-Pt)</td>
+                                    <td class="py-3 px-4 text-slate-500 text-sm">구조 단순화 가능</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50 transition-colors">
+                                    <td class="py-3 px-4 font-medium">센서 직경</td>
+                                    <td class="py-3 px-4 text-slate-600">3.5 mm</td>
+                                    <td class="py-3 px-4 font-semibold text-blue-700 bg-blue-50/30">≤ 2.0 mm</td>
+                                    <td class="py-3 px-4 text-slate-500 text-sm">삽입 거부감 감소</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50 transition-colors">
+                                    <td class="py-3 px-4 font-medium">센서 길이</td>
+                                    <td class="py-3 px-4 text-slate-600">18.3 mm</td>
+                                    <td class="py-3 px-4 font-semibold text-blue-700 bg-blue-50/30">≤ 15.0 mm</td>
+                                    <td class="py-3 px-4 text-slate-500 text-sm">체내 적응성 향상</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50 transition-colors">
+                                    <td class="py-3 px-4 font-medium">배터리 유무</td>
+                                    <td class="py-3 px-4 text-slate-600">없음 (무선 전력 수확)</td>
+                                    <td class="py-3 px-4 font-semibold text-blue-700 bg-blue-50/30">없음 (NFC 기반)</td>
+                                    <td class="py-3 px-4 text-slate-500 text-sm">소형화 필수 조건</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50 transition-colors">
+                                    <td class="py-3 px-4 font-medium">외부막 기술</td>
+                                    <td class="py-3 px-4 text-slate-600">실리콘 기반 하이드로젤</td>
+                                    <td class="py-3 px-4 font-semibold text-blue-700 bg-blue-50/30">양쪽성 이온 고분자 막</td>
+                                    <td class="py-3 px-4 text-slate-500 text-sm">바이오파울링 억제</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-          </div>
         </section>
 
-        {/* Section 2 */}
+        <!-- Section 2 -->
         <section>
-          <div className="flex items-center gap-3 mb-8">
-            <div className="p-3 bg-cyan-100 text-cyan-700 rounded-xl">
-              <Microscope size={24} />
+            <div class="flex items-center gap-3 mb-8">
+                <div class="p-3 bg-cyan-100 text-cyan-700 rounded-xl">
+                    <i class="fa-solid fa-microscope text-xl"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-900">나노다공성 백금 전극의 전기화학적 거동</h2>
             </div>
-            <h2 className="text-2xl font-bold text-slate-900">나노다공성 백금 전극의 전기화학적 거동</h2>
-          </div>
-          <div className="grid md:grid-cols-5 gap-8 items-center">
-            <div className="md:col-span-3 space-y-4 text-slate-600 leading-relaxed">
-              <p>
-                나노다공성 백금(np-Pt)은 비표면적이 수백 배 이상 넓어 중성 환경에서도 포도당 산화 반응에 높은 민감도를 나타냅니다. 효소 기반 센서의 산소 농도 의존성 및 효소 열화 문제를 원천적으로 제거할 수 있습니다.
-              </p>
-              <ul className="list-disc pl-5 space-y-2 marker:text-cyan-500">
-                <li>백금 표면으로의 포도당 흡착 및 탈수소화</li>
-                <li>중간 생성물(Gluconolactone 등)의 형성</li>
-                <li>표면 산화물(Pt-OH)과의 반응을 통한 최종 산화물 형성 및 전자 방출</li>
-              </ul>
+            <div class="grid md:grid-cols-5 gap-8 items-center">
+                <div class="md:col-span-3 space-y-4 text-slate-600 leading-relaxed">
+                    <p>
+                        나노다공성 백금(np-Pt)은 비표면적이 수백 배 이상 넓어 중성 환경에서도 포도당 산화 반응에 높은 민감도를 나타냅니다. 효소 기반 센서의 산소 농도 의존성 및 효소 열화 문제를 원천적으로 제거할 수 있습니다.
+                    </p>
+                    <ul class="list-disc pl-5 space-y-2 marker:text-cyan-500">
+                        <li>백금 표면으로의 포도당 흡착 및 탈수소화</li>
+                        <li>중간 생성물(Gluconolactone 등)의 형성</li>
+                        <li>표면 산화물(Pt-OH)과의 반응을 통한 최종 산화물 형성 및 전자 방출</li>
+                    </ul>
+                </div>
+                <div class="md:col-span-2 bg-slate-800 text-slate-100 p-6 rounded-2xl shadow-inner font-mono text-sm">
+                    <div class="mb-4">
+                        <span class="text-cyan-400 block mb-1">Reaction 1:</span>
+                        Glucose &rarr; Gluconolactone + 2H<sup>+</sup> + 2e<sup>-</sup>
+                    </div>
+                    <div>
+                        <span class="text-cyan-400 block mb-1">Reaction 2:</span>
+                        Pt + H<sub>2</sub>O &rarr; Pt-OH + H<sup>+</sup> + e<sup>-</sup>
+                    </div>
+                </div>
             </div>
-            <div className="md:col-span-2 bg-slate-800 text-slate-100 p-6 rounded-2xl shadow-inner font-mono text-sm">
-              <div className="mb-4">
-                <span className="text-cyan-400 block mb-1">Reaction 1:</span>
-                Glucose &rarr; Gluconolactone + 2H<sup>+</sup> + 2e<sup>-</sup>
-              </div>
-              <div>
-                <span className="text-cyan-400 block mb-1">Reaction 2:</span>
-                Pt + H<sub>2</sub>O &rarr; Pt-OH + H<sup>+</sup> + e<sup>-</sup>
-              </div>
-            </div>
-          </div>
         </section>
 
-        {/* Section 3 */}
+        <!-- Section 3 -->
         <section>
-          <div className="flex items-center gap-3 mb-8">
-            <div className="p-3 bg-amber-100 text-amber-700 rounded-xl">
-              <Zap size={24} />
+            <div class="flex items-center gap-3 mb-8">
+                <div class="p-3 bg-amber-100 text-amber-700 rounded-xl">
+                    <i class="fa-solid fa-bolt text-xl"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-900">기술적 난제 1: 이중층 캐패시턴스 최소화</h2>
             </div>
-            <h2 className="text-2xl font-bold text-slate-900">기술적 난제 1: 이중층 캐패시턴스 최소화</h2>
-          </div>
-          
-          <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8 mb-6">
-            <p className="text-slate-600 mb-6 leading-relaxed">
-              np-Pt의 높은 비표면적은 거대한 이중층 캐패시턴스(C<sub>dl</sub>)를 형성하여, 무선 전력 인가 시 급격한 충전 전류를 발생시킵니다. 이는 측정 신호 안정화를 지연시키는 핵심 난제입니다.
+            
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8 mb-6">
+                <p class="text-slate-600 mb-6 leading-relaxed">
+                    np-Pt의 높은 비표면적은 거대한 이중층 캐패시턴스(C<sub>dl</sub>)를 형성하여, 무선 전력 인가 시 급격한 충전 전류를 발생시킵니다. 이는 측정 신호 안정화를 지연시키는 핵심 난제입니다.
+                </p>
+
+                <!-- Formula Block -->
+                <div class="bg-amber-50 border border-amber-100 rounded-xl p-6 text-center mb-8 overflow-x-auto">
+                    <p class="text-slate-800 font-serif text-lg md:text-xl whitespace-nowrap">
+                        <span class="italic">i</span><sub>total</sub> = <span class="italic">i</span><sub>c</sub> + <span class="italic">i</span><sub>f</sub> = 
+                        <span class="inline-block mx-2 text-amber-700">
+                            <span class="border-b border-amber-700 px-1">V</span><br>
+                            <span>R<sub>s</sub></span>
+                        </span>
+                        e<sup>-t / R<sub>s</sub>C<sub>dl</sub></sup>
+                        <span class="mx-2">+</span>
+                        <span class="inline-block mx-2 text-slate-700">
+                            <span class="border-b border-slate-700 px-1">nFAD<sup>1/2</sup>C<sup>*</sup></span><br>
+                            <span>&pi;<sup>1/2</sup>t<sup>1/2</sup></span>
+                        </span>
+                    </p>
+                    <p class="text-sm text-slate-500 mt-4">( i<sub>c</sub>: 충전 전류, i<sub>f</sub>: 패러데이 반응 전류 )</p>
+                </div>
+
+                <h3 class="text-lg font-bold text-slate-900 mb-4">기하학적 최적화 설계 전략</h3>
+                <div class="grid sm:grid-cols-3 gap-4">
+                    <div class="bg-slate-50 rounded-xl p-5 border border-slate-100">
+                        <h4 class="font-bold text-amber-700 mb-2">1. 전극 간 거리 제어</h4>
+                        <p class="text-sm text-slate-600">RE-WE 간 근접 배치를 통해 용액 저항(R<sub>s</sub>)을 감소시켜 시상수(&tau;)를 단축합니다.</p>
+                    </div>
+                    <div class="bg-slate-50 rounded-xl p-5 border border-slate-100">
+                        <h4 class="font-bold text-amber-700 mb-2">2. 원자적 구조 제어</h4>
+                        <p class="text-sm text-slate-600">Pt(111) 면에 테라스와 스텝 구조를 도입하여 캐패시턴스 최소값을 유도합니다.</p>
+                    </div>
+                    <div class="bg-slate-50 rounded-xl p-5 border border-slate-100">
+                        <h4 class="font-bold text-amber-700 mb-2">3. Pre-charging 펄스</h4>
+                        <p class="text-sm text-slate-600">초기 단계에 높은 전압을 짧게 인가하여 이중층을 수 밀리초 내에 강제 충전시킵니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4 -->
+        <section>
+            <div class="flex items-center gap-3 mb-8">
+                <div class="p-3 bg-emerald-100 text-emerald-700 rounded-xl">
+                    <i class="fa-solid fa-shield-halved text-xl"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-900">기술적 난제 2: 1년 수명 및 바이오파울링 억제</h2>
+            </div>
+
+            <p class="text-slate-600 mb-6 text-lg">
+                체내 삽입 시 발생하는 이물 반응(FBR)을 억제하고 1년 이상의 센서 수명을 확보하기 위해 <strong>양쪽성 이온(Zwitterionic) 고분자</strong> 기반의 초평탄 외부막 설계가 적용됩니다.
             </p>
 
-            {/* Formula Block */}
-            <div className="bg-amber-50 border border-amber-100 rounded-xl p-6 text-center mb-8 overflow-x-auto">
-              <p className="text-slate-800 font-serif text-lg md:text-xl whitespace-nowrap">
-                <span className="italic">i</span><sub>total</sub> = <span className="italic">i</span><sub>c</sub> + <span className="italic">i</span><sub>f</sub> = 
-                <span className="inline-block mx-2 text-amber-700">
-                  <span className="border-b border-amber-700 px-1">V</span>
-                  <br/>
-                  <span>R<sub>s</sub></span>
-                </span>
-                e<sup>-t / R<sub>s</sub>C<sub>dl</sub></sup>
-                <span className="mx-2">+</span>
-                <span className="inline-block mx-2 text-slate-700">
-                  <span className="border-b border-slate-700 px-1">nFAD<sup>1/2</sup>C<sup>*</sup></span>
-                  <br/>
-                  <span>&pi;<sup>1/2</sup>t<sup>1/2</sup></span>
-                </span>
-              </p>
-              <p className="text-sm text-slate-500 mt-4">( i<sub>c</sub>: 충전 전류, i<sub>f</sub>: 패러데이 반응 전류 )</p>
+            <div class="grid md:grid-cols-3 gap-6 mb-8">
+                <!-- 카드 1 -->
+                <div class="bg-white border border-emerald-100 p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-10 h-10 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-droplet"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">Sulfobetaine (SB)</h3>
+                    <p class="text-sm text-slate-600">넓은 pH 범위에서 전하 중성을 유지하며 체내 산화 환경에서 안정성이 매우 높습니다.</p>
+                </div>
+                <!-- 카드 2 -->
+                <div class="bg-white border border-emerald-100 p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-10 h-10 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-shield-virus"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">Carboxybetaine (CB)</h3>
+                    <p class="text-sm text-slate-600">극도의 친수성을 띠어 강력한 수화층을 형성, 단백질 흡착 저항성이 가장 뛰어납니다.</p>
+                </div>
+                <!-- 카드 3 -->
+                <div class="bg-white border border-emerald-100 p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-10 h-10 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-dna"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">Phosphorylcholine (PC)</h3>
+                    <p class="text-sm text-slate-600">세포막의 인지질 구조를 모방하여 인체 면역 체계의 인식을 최소화합니다.</p>
+                </div>
             </div>
 
-            <h3 className="text-lg font-bold text-slate-900 mb-4">기하학적 최적화 설계 전략</h3>
-            <div className="grid sm:grid-cols-3 gap-4">
-              <div className="bg-slate-50 rounded-xl p-5 border border-slate-100">
-                <h4 className="font-bold text-amber-700 mb-2">1. 전극 간 거리 제어</h4>
-                <p className="text-sm text-slate-600">RE-WE 간 근접 배치를 통해 용액 저항(R<sub>s</sub>)을 감소시켜 시상수(&tau;)를 단축합니다.</p>
-              </div>
-              <div className="bg-slate-50 rounded-xl p-5 border border-slate-100">
-                <h4 className="font-bold text-amber-700 mb-2">2. 원자적 구조 제어</h4>
-                <p className="text-sm text-slate-600">Pt(111) 면에 테라스와 스텝 구조를 도입하여 캐패시턴스 최소값을 유도합니다.</p>
-              </div>
-              <div className="bg-slate-50 rounded-xl p-5 border border-slate-100">
-                <h4 className="font-bold text-amber-700 mb-2">3. Pre-charging 펄스</h4>
-                <p className="text-sm text-slate-600">초기 단계에 높은 전압을 짧게 인가하여 이중층을 수 밀리초 내에 강제 충전시킵니다.</p>
-              </div>
+            <div class="bg-emerald-50 rounded-2xl p-6 md:p-8 flex flex-col md:flex-row gap-6 items-center">
+                <div class="flex-1">
+                    <h3 class="text-lg font-bold text-emerald-900 mb-2">촉매 피독(Poisoning) 억제</h3>
+                    <p class="text-emerald-800 text-sm leading-relaxed mb-4">
+                        생체 내 고농도 염화이온(Cl<sup>-</sup>)에 의한 촉매 피독을 막기 위해 <strong>백금-이리듐(Pt-Ir) 합금 나노구조</strong>를 도입합니다. 이는 전자적 상승 효과를 통해 염화이온 흡착을 방해하고 1년 장기 구동을 위한 내부식성을 제공합니다.
+                    </p>
+                </div>
+                <div class="w-full md:w-1/3 bg-white p-4 rounded-xl shadow-sm text-center border border-emerald-100">
+                    <p class="text-xs font-bold text-slate-500 mb-1">외부막 설계 목표</p>
+                    <div class="flex justify-between items-center px-4">
+                        <div class="text-center">
+                            <p class="text-2xl font-extrabold text-emerald-600">&lt; 1<span class="text-sm font-medium"> nm</span></p>
+                            <p class="text-xs text-slate-500">RMS 거칠기</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-2xl font-extrabold text-emerald-600">1.0<span class="text-sm font-medium"> nm</span></p>
+                            <p class="text-xs text-slate-500">기공 크기</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </section>
 
-        {/* Section 4 */}
+        <!-- Section 5 -->
         <section>
-          <div className="flex items-center gap-3 mb-8">
-            <div className="p-3 bg-emerald-100 text-emerald-700 rounded-xl">
-              <ShieldCheck size={24} />
-            </div>
-            <h2 className="text-2xl font-bold text-slate-900">기술적 난제 2: 1년 수명 및 바이오파울링 억제</h2>
-          </div>
-
-          <p className="text-slate-600 mb-6 text-lg">
-            체내 삽입 시 발생하는 이물 반응(FBR)을 억제하고 1년 이상의 센서 수명을 확보하기 위해 <strong>양쪽성 이온(Zwitterionic) 고분자</strong> 기반의 초평탄 외부막 설계가 적용됩니다.
-          </p>
-
-          <div className="grid md:grid-cols-3 gap-6 mb-8">
-            {[
-              {
-                title: "Sulfobetaine (SB)",
-                desc: "넓은 pH 범위에서 전하 중성을 유지하며 체내 산화 환경에서 안정성이 매우 높습니다.",
-                icon: <Droplets size={20} />
-              },
-              {
-                title: "Carboxybetaine (CB)",
-                desc: "극도의 친수성을 띠어 강력한 수화층을 형성, 단백질 흡착 저항성이 가장 뛰어납니다.",
-                icon: <ShieldCheck size={20} />
-              },
-              {
-                title: "Phosphorylcholine (PC)",
-                desc: "세포막의 인지질 구조를 모방하여 인체 면역 체계의 인식을 최소화합니다.",
-                icon: <Activity size={20} />
-              }
-            ].map((item, idx) => (
-              <div key={idx} className="bg-white border border-emerald-100 p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
-                <div className="w-10 h-10 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mb-4">
-                  {item.icon}
+            <div class="flex items-center gap-3 mb-8">
+                <div class="p-3 bg-indigo-100 text-indigo-700 rounded-xl">
+                    <i class="fa-solid fa-microchip text-xl"></i>
                 </div>
-                <h3 className="text-lg font-bold text-slate-900 mb-2">{item.title}</h3>
-                <p className="text-sm text-slate-600">{item.desc}</p>
-              </div>
-            ))}
-          </div>
+                <h2 class="text-2xl font-bold text-slate-900">배터리 없는 초소형 무선 구동 시스템</h2>
+            </div>
+            
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8">
+                <p class="text-slate-600 mb-8 leading-relaxed">
+                    2.0mm 이하의 직경을 달성하기 위해 내부 배터리를 제거하고 스마트폰의 13.56 MHz 자기장을 활용하는 <strong>NFC(Near Field Communication) 기술</strong>을 통합합니다.
+                </p>
 
-          <div className="bg-emerald-50 rounded-2xl p-6 md:p-8 flex flex-col md:flex-row gap-6 items-center">
-            <div className="flex-1">
-              <h3 className="text-lg font-bold text-emerald-900 mb-2">촉매 피독(Poisoning) 억제</h3>
-              <p className="text-emerald-800 text-sm leading-relaxed mb-4">
-                생체 내 고농도 염화이온(Cl<sup>-</sup>)에 의한 촉매 피독을 막기 위해 <strong>백금-이리듐(Pt-Ir) 합금 나노구조</strong>를 도입합니다. 이는 전자적 상승 효과를 통해 염화이온 흡착을 방해하고 1년 장기 구동을 위한 내부식성을 제공합니다.
-              </p>
-            </div>
-            <div className="w-full md:w-1/3 bg-white p-4 rounded-xl shadow-sm text-center border border-emerald-100">
-              <p className="text-xs font-bold text-slate-500 mb-1">외부막 설계 목표</p>
-              <div className="flex justify-between items-center px-4">
-                <div className="text-center">
-                  <p className="text-2xl font-extrabold text-emerald-600">&lt; 1<span className="text-sm font-medium"> nm</span></p>
-                  <p className="text-xs text-slate-500">RMS 거칠기</p>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="border border-indigo-100 bg-indigo-50/30 p-5 rounded-xl">
+                        <div class="flex items-center gap-2 mb-3 text-indigo-700 font-bold">
+                            <i class="fa-solid fa-wave-square"></i>
+                            <h4>루프 안테나</h4>
+                        </div>
+                        <p class="text-sm text-slate-600">유연 기판(FPCB) 기반 코일 설계로 RF 전력 수확</p>
+                    </div>
+                    <div class="border border-indigo-100 bg-indigo-50/30 p-5 rounded-xl">
+                        <div class="flex items-center gap-2 mb-3 text-indigo-700 font-bold">
+                            <i class="fa-solid fa-bolt"></i>
+                            <h4>전력 관리(PMU)</h4>
+                        </div>
+                        <p class="text-sm text-slate-600">수확된 전압 안정화를 위한 고효율 CMOS 통합</p>
+                    </div>
+                    <div class="border border-indigo-100 bg-indigo-50/30 p-5 rounded-xl">
+                        <div class="flex items-center gap-2 mb-3 text-indigo-700 font-bold">
+                            <i class="fa-solid fa-battery-half"></i>
+                            <h4>저장 캐패시터</h4>
+                        </div>
+                        <p class="text-sm text-slate-600">초기 충전 전류(i_c) 공급을 위한 박막형 적층</p>
+                    </div>
+                    <div class="border border-indigo-100 bg-indigo-50/30 p-5 rounded-xl">
+                        <div class="flex items-center gap-2 mb-3 text-indigo-700 font-bold">
+                            <i class="fa-solid fa-microchip"></i>
+                            <h4>포텐시오스탯</h4>
+                        </div>
+                        <p class="text-sm text-slate-600">단일 칩 통합 초저전력(sub-μW) 회로 설계</p>
+                    </div>
                 </div>
-                <div className="text-center">
-                  <p className="text-2xl font-extrabold text-emerald-600">1.0<span className="text-sm font-medium"> nm</span></p>
-                  <p className="text-xs text-slate-500">기공 크기</p>
-                </div>
-              </div>
             </div>
-          </div>
         </section>
 
-        {/* Section 5 */}
-        <section>
-          <div className="flex items-center gap-3 mb-8">
-            <div className="p-3 bg-indigo-100 text-indigo-700 rounded-xl">
-              <Cpu size={24} />
-            </div>
-            <h2 className="text-2xl font-bold text-slate-900">배터리 없는 초소형 무선 구동 시스템</h2>
-          </div>
-          
-          <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8">
-            <p className="text-slate-600 mb-8 leading-relaxed">
-              2.0mm 이하의 직경을 달성하기 위해 내부 배터리를 제거하고 스마트폰의 13.56 MHz 자기장을 활용하는 <strong>NFC(Near Field Communication) 기술</strong>을 통합합니다.
+        <!-- Conclusion -->
+        <section class="bg-slate-900 text-white rounded-3xl p-8 md:p-12 text-center relative overflow-hidden">
+            <div class="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 rounded-full bg-blue-600/20 blur-3xl"></div>
+            <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-64 h-64 rounded-full bg-cyan-600/20 blur-3xl"></div>
+            
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 relative z-10">
+                비침습적 감각(Unobtrusive Sensing)의 시대로
+            </h2>
+            <p class="text-slate-300 md:text-lg max-w-3xl mx-auto leading-relaxed relative z-10 mb-8">
+                나노다공성 백금을 이용한 2.0mm 직경의 1년 수명 CGM은 기술적으로 도전적이나 명확한 해결 경로를 가지고 있습니다. 기하학적 표면 제어와 양쪽성 이온 고분자막의 결합은 환자가 혈당 측정의 존재를 잊고 생활할 수 있는 혁신을 가져올 것이며, 배터리 폐기물이 없는 친환경적인 의료 솔루션으로서 큰 사회적 가치를 창출할 것입니다.
             </p>
-
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {[
-                { title: "루프 안테나", desc: "유연 기판(FPCB) 기반 코일 설계로 RF 전력 수확", icon: <Activity size={18} /> },
-                { title: "전력 관리(PMU)", desc: "수확된 전압 안정화를 위한 고효율 CMOS 통합", icon: <Zap size={18} /> },
-                { title: "저장 캐패시터", desc: "초기 충전 전류(i_c) 공급을 위한 박막형 적층", icon: <Battery size={18} /> },
-                { title: "포텐시오스탯", desc: "단일 칩 통합 초저전력(sub-μW) 회로 설계", icon: <Cpu size={18} /> }
-              ].map((item, idx) => (
-                <div key={idx} className="border border-indigo-100 bg-indigo-50/30 p-5 rounded-xl">
-                  <div className="flex items-center gap-2 mb-3 text-indigo-700 font-bold">
-                    {item.icon}
-                    <h4>{item.title}</h4>
-                  </div>
-                  <p className="text-sm text-slate-600">{item.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
+            <button class="relative z-10 inline-flex items-center gap-2 px-6 py-3 bg-blue-500 hover:bg-blue-400 text-white rounded-full font-bold transition-colors">
+                연구 실증 데이터 보기 <i class="fa-solid fa-chevron-right text-sm"></i>
+            </button>
         </section>
 
-        {/* Conclusion */}
-        <section className="bg-slate-900 text-white rounded-3xl p-8 md:p-12 text-center relative overflow-hidden">
-          <div className="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 rounded-full bg-blue-600/20 blur-3xl"></div>
-          <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-64 h-64 rounded-full bg-cyan-600/20 blur-3xl"></div>
-          
-          <h2 className="text-2xl md:text-3xl font-bold mb-6 relative z-10">
-            비침습적 감각(Unobtrusive Sensing)의 시대로
-          </h2>
-          <p className="text-slate-300 md:text-lg max-w-3xl mx-auto leading-relaxed relative z-10 mb-8">
-            나노다공성 백금을 이용한 2.0mm 직경의 1년 수명 CGM은 기술적으로 도전적이나 명확한 해결 경로를 가지고 있습니다. 기하학적 표면 제어와 양쪽성 이온 고분자막의 결합은 환자가 혈당 측정의 존재를 잊고 생활할 수 있는 혁신을 가져올 것이며, 배터리 폐기물이 없는 친환경적인 의료 솔루션으로서 큰 사회적 가치를 창출할 것입니다.
-          </p>
-          <button className="relative z-10 inline-flex items-center gap-2 px-6 py-3 bg-blue-500 hover:bg-blue-400 text-white rounded-full font-bold transition-colors">
-            연구 실증 데이터 보기 <ChevronRight size={18} />
-          </button>
-        </section>
+    </main>
 
-      </main>
-
-      <footer className="bg-slate-100 py-8 text-center text-slate-500 text-sm">
+    <footer class="bg-slate-100 py-8 text-center text-slate-500 text-sm">
         <p>© 2026 차세대 의료기기 연구개발 프로젝트. All rights reserved.</p>
-      </footer>
-    </div>
-  );
-};
+    </footer>
 
-export default App;
+</body>
+</html>
