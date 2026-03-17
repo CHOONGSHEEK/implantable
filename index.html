@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>차세대 임플란터블 무효소식 연속혈당측정기 (CGM) 기술 제안</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Google Fonts: Noto Sans KR -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <!-- Chosen Palette: Slate & Teal Minimalism -->
+    <!-- Application Structure Plan: 
+        1. Header/Intro: Clear statement of the ultimate goal (1-year+, battery-less, nano-porous Pt).
+        2. Goal Overview (Size): Visual comparison of current vs target size using CSS layouts.
+        3. Challenge 1 (Power/Capacitance): Interactive line chart showing current vs target response times. Explains WHY capacitance is a hurdle for battery-less design and proposed research directions.
+        4. Challenge 2 (Longevity/Biofouling): Scatter chart mapping hypothetical membrane materials based on roughness and permeability. Explains the trade-off and proposes compositional directions.
+        Reasoning: This structure breaks down a highly technical engineering problem into digestable, goal-oriented sections. By interacting with the charts, the user understands the 'delta' between current limitations and the required technological breakthroughs. 
+    -->
+    <!-- Visualization & Content Choices: 
+        - Size Comparison -> Visual Aid -> CSS Flexbox blocks scaling relative sizes -> Instantly conveys the miniaturization challenge without complex graphics.
+        - Capacitance Problem -> Change/Time -> Chart.js Line Chart (Current vs Time) -> Toggle buttons swap data between slow stabilization (needs battery) and fast stabilization (battery-less) -> Demonstrates the core electrical hurdle.
+        - Membrane Optimization -> Relationships/Trade-offs -> Chart.js Scatter Plot (Roughness vs Permeability) -> Hovering shows hypothetical material compositions -> Illustrates the search for the 'Goldilocks' zone for longevity.
+        - NO SVG or Mermaid used. Pure HTML/CSS and Canvas-based Chart.js.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+            color: #1e293b; /* slate-800 */
+        }
+        
+        /* Mandatory Chart Container Styling */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 380px;
+            }
+        }
+
+        /* Custom Scrollbar for a cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; 
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-teal-200 selection:text-teal-900">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white/90 backdrop-blur-md border-b border-slate-200 z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0 font-bold text-xl text-teal-700 tracking-tighter">
+                    NanoPt-CGM Project
+                </div>
+                <div class="hidden md:flex space-x-8 text-sm font-medium text-slate-600">
+                    <a href="#overview" class="hover:text-teal-600 transition-colors">프로젝트 개요</a>
+                    <a href="#challenge1" class="hover:text-teal-600 transition-colors">난제 1: 무배터리화</a>
+                    <a href="#challenge2" class="hover:text-teal-600 transition-colors">난제 2: 1년+ 수명</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="pt-32 pb-16 bg-gradient-to-b from-white to-slate-50 border-b border-slate-100">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 leading-tight mb-6">
+                차세대 <span class="text-teal-600">나노다공성 백금</span> 기반<br>임플란터블 연속혈당측정기
+            </h1>
+            <p class="text-lg text-slate-600 leading-relaxed mb-8 max-w-2xl mx-auto">
+                피부 아래 삽입하여 1년 이상 사용 가능하며, 배터리가 필요 없는 완전 무선 초소형 센서 개발을 위한 기술적 난제 분석 및 연구 방향 제안서입니다.
+            </p>
+            <div class="flex justify-center gap-4 text-sm font-medium">
+                <span class="px-4 py-2 bg-slate-100 rounded-full text-slate-700 border border-slate-200">무효소식 (Enzyme-free)</span>
+                <span class="px-4 py-2 bg-teal-50 rounded-full text-teal-700 border border-teal-100">1년 이상 유지</span>
+                <span class="px-4 py-2 bg-indigo-50 rounded-full text-indigo-700 border border-indigo-100">무배터리 (Battery-less)</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-24">
+
+        <!-- Section: Overview / Target Specs -->
+        <section id="overview" class="scroll-mt-24">
+            <div class="mb-8">
+                <h2 class="text-2xl font-bold text-slate-900 border-l-4 border-teal-500 pl-3 mb-4">목표 제원 및 폼팩터</h2>
+                <p class="text-slate-600">
+                    현재 상용화된 유사 제품(예: 에버센스 365, 형광 반응식)은 약 3.5Φ 굵기에 10mm 길이를 갖습니다. 
+                    본 프로젝트는 이식 거부감을 최소화하기 위해 내부 배터리를 제거하고 <strong>2.0Φ 이하의 초소형화</strong>를 목표로 합니다.
+                </p>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8">
+                <h3 class="text-lg font-semibold text-center text-slate-700 mb-8">센서 크기 비교 (단면 굵기 기준)</h3>
+                <div class="flex flex-col md:flex-row items-center justify-center gap-12">
+                    
+                    <!-- Existing Sensor Visual -->
+                    <div class="flex flex-col items-center">
+                        <div class="w-32 h-32 rounded-full border-4 border-slate-300 bg-slate-100 flex items-center justify-center relative shadow-inner">
+                            <span class="text-slate-500 font-bold text-lg">3.5Φ</span>
+                            <div class="absolute -bottom-8 text-sm text-slate-500 text-center">
+                                기존 임플란터블<br>(배터리/광학계 포함)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-3xl text-slate-300 font-light hidden md:block">→</div>
+
+                    <!-- Target Sensor Visual -->
+                    <div class="flex flex-col items-center">
+                        <!-- 2.0/3.5 ratio applied to width/height -->
+                        <div class="w-[73px] h-[73px] rounded-full border-4 border-teal-500 bg-teal-50 flex items-center justify-center relative shadow-md ring-4 ring-teal-500/20">
+                            <span class="text-teal-700 font-bold">2.0Φ</span>
+                            <div class="absolute -bottom-8 text-sm text-teal-700 font-medium text-center whitespace-nowrap">
+                                <strong>개발 목표</strong><br>(배터리 프리)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Challenge 1 -->
+        <section id="challenge1" class="scroll-mt-24">
+            <div class="mb-8">
+                <h2 class="text-2xl font-bold text-slate-900 border-l-4 border-indigo-500 pl-3 mb-4">난제 1: 이중층 캐패시턴스 한계 극복 (무배터리화)</h2>
+                <p class="text-slate-600">
+                    배터리 없이 외부에서 무선 충전(전압 인가)을 하는 순간만 혈당을 측정해야 합니다. 하지만 백금 전극에 전압이 갑자기 인가되면, 
+                    <strong>이중층 캐패시턴스(Double-layer Capacitance) 효과</strong>로 인해 반응 전류가 급증했다가 안정화되기까지 너무 긴 시간이 걸립니다. 
+                    이 안정화 시간을 극도로 단축해야만 순간 측정 기반의 무배터리 센서가 가능합니다.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-lg font-semibold text-slate-800">전압 인가 시 전류 응답 곡선</h3>
+                        <div class="flex gap-2">
+                            <button id="btn-current-tech" class="px-3 py-1.5 text-xs font-medium rounded-md bg-slate-100 text-slate-600 hover:bg-slate-200 transition-colors">기존 백금 전극</button>
+                            <button id="btn-target-tech" class="px-3 py-1.5 text-xs font-medium rounded-md bg-indigo-600 text-white hover:bg-indigo-700 shadow-sm transition-colors">목표 최적화 전극</button>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="capacitanceChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-indigo-50 rounded-2xl p-6 border border-indigo-100 flex flex-col justify-center">
+                    <h3 class="text-lg font-bold text-indigo-900 mb-4">해결을 위한 연구 방향</h3>
+                    <ul class="space-y-4 text-sm text-indigo-800">
+                        <li class="flex items-start">
+                            <span class="mr-2 mt-0.5 text-indigo-500">▶</span>
+                            <div>
+                                <strong>전극 간 거리 최적화</strong><br>
+                                기준전극과 활성전극 간의 거리를 최대화하여 공간 전하 분포를 분산시키고 초기 피크 전류를 감소.
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-2 mt-0.5 text-indigo-500">▶</span>
+                            <div>
+                                <strong>매질 전해도(Conductivity) 조절</strong><br>
+                                전극 사이에 존재하는 나노 다공성 구조 내 전해질의 이온 이동도를 조절하여 충전 시간을 최소화.
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-2 mt-0.5 text-indigo-500">▶</span>
+                            <div>
+                                <strong>마이크로/나노 패턴화</strong><br>
+                                활성 전극의 물리적 면적 대비 전기화학적 유효 면적 비율을 조절하여 불필요한 캐패시턴스 성분 억제.
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Challenge 2 -->
+        <section id="challenge2" class="scroll-mt-24">
+            <div class="mb-8">
+                <h2 class="text-2xl font-bold text-slate-900 border-l-4 border-emerald-500 pl-3 mb-4">난제 2: 바이오파울링 억제 및 외부막 조성 (1년+ 수명)</h2>
+                <p class="text-slate-600">
+                    무효소식 센서의 수명을 1년 이상으로 늘리기 위한 가장 큰 장애물은 체내 단백질 흡착 및 세포 점착으로 인한 <strong>바이오파울링(Biofouling)</strong>과 백금 피독 현상입니다. 
+                    이를 막기 위해 외부 보호막은 표면 거칠기가 극도로 낮아야(단백질 부착 방지) 하면서도, 포도당의 투과도는 센싱에 필요한 최소한으로 일정하게 유지되어야 합니다.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+                
+                <div class="bg-emerald-50 rounded-2xl p-6 border border-emerald-100 order-2 lg:order-1">
+                    <h3 class="text-lg font-bold text-emerald-900 mb-4">외부막 조성 연구 방향</h3>
+                    <ul class="space-y-4 text-sm text-emerald-800">
+                        <li class="flex items-start">
+                            <span class="mr-2 mt-0.5 text-emerald-500">◆</span>
+                            <div>
+                                <strong>Zwitterionic 폴리머 블렌딩</strong><br>
+                                양이온과 음이온을 동시에 가져 강력한 수화층을 형성, 단백질 흡착을 원천 차단하는 소재 적용.
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-2 mt-0.5 text-emerald-500">◆</span>
+                            <div>
+                                <strong>다공성 PTFE + 하이드로겔 복합체</strong><br>
+                                매끄러운 표면의 불소수지 뼈대에 포도당 투과 채널 역할을 하는 하이드로겔을 미세하게 함침.
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-2 mt-0.5 text-emerald-500">◆</span>
+                            <div>
+                                <strong>나노 레벨 표면 평탄화 공정</strong><br>
+                                코팅 후 플라즈마 또는 용매 증기 처리 등을 통해 표면 거칠기(Ra)를 수 나노미터 수준으로 제어.
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-slate-200 p-6 order-1 lg:order-2">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="text-lg font-semibold text-slate-800">소재별 외부막 특성 매핑 (가설)</h3>
+                    </div>
+                    <p class="text-xs text-slate-500 mb-4">
+                        마우스를 올리면 각 조성의 특성을 확인할 수 있습니다. 우측 하단(저거칠기, 적정투과도)이 타겟 영역입니다.
+                    </p>
+                    <div class="chart-container">
+                        <canvas id="membraneChart"></canvas>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 py-8 text-center text-sm border-t border-slate-800">
+        <p>차세대 CGM 개발 제안서 아키텍처 데모</p>
+    </footer>
+
+    <!-- JavaScript for Interactivity and Charts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // --- Chart 1: Capacitance Line Chart ---
+            const capCtx = document.getElementById('capacitanceChart').getContext('2d');
+            
+            // Generate exponential decay data
+            function generateDecayData(peak, rate, steadyState, points) {
+                let data = [];
+                for(let i=0; i<points; i++) {
+                    let t = i * 2; // time step
+                    let val = (peak - steadyState) * Math.exp(-rate * t) + steadyState;
+                    data.push({x: t, y: val});
+                }
+                return data;
+            }
+
+            const dataCurrent = generateDecayData(100, 0.02, 10, 50); // High peak, slow decay
+            const dataTarget = generateDecayData(30, 0.2, 10, 50);   // Low peak, fast decay
+
+            const capChart = new Chart(capCtx, {
+                type: 'line',
+                data: {
+                    datasets: [{
+                        label: '전류 응답 (기존 기술)',
+                        data: dataCurrent,
+                        borderColor: '#94a3b8', // slate-400
+                        backgroundColor: 'rgba(148, 163, 184, 0.2)',
+                        borderWidth: 2,
+                        pointRadius: 0,
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: { mode: 'index', intersect: false },
+                    plugins: {
+                        legend: { position: 'bottom' },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ': ' + context.parsed.y.toFixed(1) + ' µA';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            type: 'linear',
+                            title: { display: true, text: '시간 (ms)' },
+                            max: 100
+                        },
+                        y: {
+                            title: { display: true, text: '전류 (µA)' },
+                            min: 0,
+                            max: 110
+                        }
+                    }
+                }
+            });
+
+            // Button Logic for Chart 1
+            const btnCurrent = document.getElementById('btn-current-tech');
+            const btnTarget = document.getElementById('btn-target-tech');
+
+            btnCurrent.addEventListener('click', () => {
+                capChart.data.datasets[0].data = dataCurrent;
+                capChart.data.datasets[0].label = '전류 응답 (기존 기술 - 배터리 필요)';
+                capChart.data.datasets[0].borderColor = '#94a3b8';
+                capChart.data.datasets[0].backgroundColor = 'rgba(148, 163, 184, 0.2)';
+                capChart.update();
+                
+                btnCurrent.classList.replace('bg-slate-100', 'bg-slate-600');
+                btnCurrent.classList.replace('text-slate-600', 'text-white');
+                btnTarget.classList.replace('bg-indigo-600', 'bg-indigo-100');
+                btnTarget.classList.replace('text-white', 'text-indigo-600');
+            });
+
+            btnTarget.addEventListener('click', () => {
+                capChart.data.datasets[0].data = dataTarget;
+                capChart.data.datasets[0].label = '전류 응답 (목표 기술 - 무배터리 가능)';
+                capChart.data.datasets[0].borderColor = '#4f46e5'; // indigo-600
+                capChart.data.datasets[0].backgroundColor = 'rgba(79, 70, 229, 0.2)';
+                capChart.update();
+
+                btnTarget.classList.replace('bg-indigo-100', 'bg-indigo-600');
+                btnTarget.classList.replace('text-indigo-600', 'text-white');
+                btnCurrent.classList.replace('bg-slate-600', 'bg-slate-100');
+                btnCurrent.classList.replace('text-white', 'text-slate-600');
+            });
+
+            // Set initial button state to match chart
+            btnCurrent.click();
+
+
+            // --- Chart 2: Membrane Scatter Chart ---
+            const memCtx = document.getElementById('membraneChart').getContext('2d');
+            
+            const membraneData = [
+                { x: 80, y: 90, name: '일반 폴리우레탄', desc: '투과도는 좋으나 거칠어 파울링 심함' },
+                { x: 20, y: 10, name: '순수 테플론 코팅', desc: '파울링은 없으나 포도당 투과 불가' },
+                { x: 60, y: 50, name: '하이드로겔 단일막', desc: '시간 지남에 따라 팽윤 및 파손' },
+                { x: 15, y: 40, name: '타겟: Zwitterionic 나노복합체', desc: '표면 초평탄화 + 미세 포도당 채널 확보' }
+            ];
+
+            const memChart = new Chart(memCtx, {
+                type: 'scatter',
+                data: {
+                    datasets: [
+                        {
+                            label: '일반 소재',
+                            data: membraneData.slice(0, 3),
+                            backgroundColor: '#94a3b8',
+                            pointRadius: 6,
+                            pointHoverRadius: 8
+                        },
+                        {
+                            label: '목표 복합 소재',
+                            data: [membraneData[3]],
+                            backgroundColor: '#10b981', // emerald-500
+                            pointRadius: 10,
+                            pointHoverRadius: 12,
+                            pointStyle: 'triangle'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom' },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const raw = context.raw;
+                                    return `${raw.name}: ${raw.desc}`;
+                                }
+                            }
+                        },
+                        // Simple plugin to draw target area background
+                        chartAreaBackground: {
+                            color: 'rgba(16, 185, 129, 0.05)' // very light emerald
+                        }
+                    },
+                    scales: {
+                        x: {
+                            title: { display: true, text: '표면 거칠기 (nm, 낮을수록 파울링 억제)' },
+                            min: 0,
+                            max: 100,
+                            grid: { drawOnChartArea: false }
+                        },
+                        y: {
+                            title: { display: true, text: '포도당 투과도 (%, 적정 수준 유지 필요)' },
+                            min: 0,
+                            max: 100,
+                            grid: { drawOnChartArea: false }
+                        }
+                    }
+                },
+                plugins: [{
+                    id: 'chartAreaBackground',
+                    beforeDraw: (chart, args, options) => {
+                        const {ctx, chartArea: {left, top, width, height}, scales: {x, y}} = chart;
+                        ctx.save();
+                        // Draw target box (Roughness 0-30, Permeability 30-50)
+                        const startX = x.getPixelForValue(0);
+                        const endX = x.getPixelForValue(30);
+                        const startY = y.getPixelForValue(50);
+                        const endY = y.getPixelForValue(30);
+                        
+                        ctx.fillStyle = options.color;
+                        ctx.fillRect(startX, startY, endX - startX, endY - startY);
+                        
+                        ctx.fillStyle = '#10b981';
+                        ctx.font = '12px "Noto Sans KR"';
+                        ctx.textAlign = 'center';
+                        ctx.fillText('Target Zone', startX + (endX-startX)/2, startY - 10);
+                        
+                        ctx.restore();
+                    }
+                }]
+            });
+        });
+    </script>
+</body>
+</html>
